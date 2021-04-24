@@ -2,11 +2,11 @@
 
 ## CONFIGURASYON
 
-|Komut|İşlevi|
+|<div style="width:450px">Komut</div>|İşlevi|
 |-|-|
 |` git config --global --list `|git ayarlarını listelemek için gerekli komut|
 |` git config --global init.defaultBranch master `|Default branch ismi|
-|` git config --global core.editor "'C:\Program Files\Sublime Text 3\sublime_text.exe'" `|Editör seçimi|
+|` git config --global core.editor "'path\sublime_text.exe'" `|Editör seçimi|
 
 ## GIT KOMUTLARI
 
@@ -36,9 +36,9 @@
 |` git stash pop `| En son değişikliğin stash'den silinerek aktif branch'e (dala) geri yükler. |
 |` git stash apply stash@{0} `| Belirtilen stash@{0} i Stash'den silmeden aktif branch'e geri yükler |
 |` git stash drop stash@{0} `| Belirtilen stash@{0} i aktif branch'e yüklemeden silinmesini sağlar. |
-|` git checkout c4ab481a6b6f272853bd4803602236164c91a3e `| Belirtilen hash e ait commite gitmek için kullanılır. HEAD yerine detached HEAD kavramı bulunmaktadır. git in yönettiği pointer. |
-|` git checkout master && git merge <<mergebranchname>> `| önce birleştirilmek istenen branche geçilir. sonra birleştirilecek branch ismi belirtilerek merge işlemi yapılır. |
-|` it branch -d <<branch_name>> `| Silinmek istenen branch ismi girlerek branch silinir. Dikkat edilmesi gereken silinmek istenen branch aktif branch olmamalıdır. |
+|` git checkout <<hash>> `| Belirtilen hash e ait commite gitmek için kullanılır. HEAD yerine detached HEAD kavramı bulunmaktadır. git in yönettiği pointer. |
+|` git checkout master`<br/>`git merge <<mergebranchname>> `| önce birleştirilmek istenen branche geçilir. sonra birleştirilecek branch ismi belirtilerek merge işlemi yapılır. |
+|` git branch -d <<branch_name>> `| Silinmek istenen branch ismi girlerek branch silinir. Dikkat edilmesi gereken silinmek istenen branch aktif branch olmamalıdır. |
 
 ## EK KOMUTLAR
 
