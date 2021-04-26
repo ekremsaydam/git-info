@@ -116,9 +116,6 @@ Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sa
 |` git difftool HEAD `| Working directory ile Repository arasındaki farkı gösterir.|
 |` git difftool --staged HEAD `| Stage area ile repository arasındaki farklar|
 
-
-
-
 ## EK KOMUTLAR
 
 |<div style="width:300px">Komut</div>|İşlevi|
@@ -158,7 +155,16 @@ To Z:/ll
 error: failed to push some refs to 'Z:/ll'
 ```
 
-
-
 ## MERGE ve DIFF TOOL
 [P4merge](https://www.perforce.com/downloads/visual-merge-tool)
+
+## KAYNAKÇA
+[progit2](https://github.com/progit/progit2)
+
+[progit2-tr](https://github.com/progit/progit2-tr)
+
+[Git Documentation Book](https://git-scm.com/book/en/v2)
+
+[git-tfs](https://github.com/git-tfs/git-tfs) migration tool
+
+[TFS to Git](https://github.com/git-tfs/git-tfs/blob/master/doc/usecases/migrate_tfs_to_git.md) Documentation
