@@ -30,7 +30,7 @@ Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sa
 
 > `.git/config` ==> `git config` komutu ile kullanılan config dosyasının yoludur. aktif dizin içerisinde bulunan gizli `.git` klasörü içerisinde yer alır.
 
-> `.gitignore` dosyası oluşturmak için gerekli syntax bilgisi için *[globbing patterns](https://en.wikipedia.org/wiki/Glob_(programming))* .
+> `.gitignore` dosyası oluşturmak için gerekli syntax bilgisi için *[globbing patterns](https://en.wikipedia.org/wiki/Glob_(programming))* <br/> Örnek git `.gitignore` dosyaları için -> [github/gitignore ](https://github.com/github/gitignore).
 
 
 ## CONFIGURASYON
