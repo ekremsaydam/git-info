@@ -9,15 +9,19 @@
 [KAYNAK](https://homes.cs.washington.edu/~mernst/advice/version-control.html)
 
 ## GIT File Workflow
+
 ![Git File Workflow](https://csharpcorner.azureedge.net/article/git-and-github-version-control-local-and-remote-repository/Images/Git%20And%20Github%20Version%20Control10.png)
 
 [KAYNAK](https://www.c-sharpcorner.com/article/git-and-github-version-control-local-and-remote-repository/)
 
 ## Merge Çeşitleri
+
 1. Fast Forward Merge
 2. No Fast Forward Merge
 3. 3 Way Merge (Automatic Merge)
+
 ## GIT ile ilgili Kısa bilgiler
+
 Git kurulumu için [Git page](https://git-scm.com/)
 
 Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sadece işaretçi (HEAD) bir kopyası oluşturulduğu için git branch dosyası disk kapasite kullanımı ve branch oluşturma süresi açısından düşük maliyetlidir.
@@ -94,7 +98,7 @@ Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sa
 |` git stash apply stash@{0} `| Belirtilen stash@{0} i Stash'den silmeden aktif branch'e geri yükler |
 |` git stash drop stash@{0} `| Belirtilen stash@{0} i aktif branch'e yüklemeden silinmesini sağlar. |
 |` git checkout <<hash>> `| Belirtilen hash e ait commite gitmek için kullanılır. HEAD yerine detached HEAD kavramı bulunmaktadır. git in yönettiği pointer. |
-|` git checkout master`<br/>`git merge <<mergebranchname>> `| önce birleştirilmek istenen branche geçilir. sonra birleştirilecek branch ismi belirtilerek merge işlemi yapılır. |
+|` git checkout master `<br/>` git merge <<mergebranchname>> `| önce birleştirilmek istenen branche geçilir. sonra birleştirilecek branch ismi belirtilerek merge işlemi yapılır. |
 |` git branch -d <<branch_name>> `| Silinmek istenen branch ismi girlerek branch silinir. Dikkat edilmesi gereken silinmek istenen branch aktif branch olmamalıdır. |
 |` git push origin --delete <<branch_name>> `| Remote branchi silmek. |
 |` git init --bare <<repo_name>> `| Yerel github-gitlab gibi dosya paylaşımında uzak bir merkezi depo oluşturmak. |
@@ -106,7 +110,7 @@ Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sa
 |` git remote -v `| Remote repository'leri (uzak depoları) URL bilgisi ile gösterir. |
 |` git fetch `| Local Repository veritabanı Remote Repository veritabanı ile senkronize edilir. |
 |` git tag "v.1.0.1" `| Etiket ekleme |
-|`git rebase -i <<commit_hash>>^ `| sondaki `^` karakterine dikkat edilmelidir. `<<commit_hash>>` olarak belirtilen committen başlamak üzere yukarıya doğru bütün birleştirilebilecek commitlerin açıklamaları ile karşımıza gelir. `pick 4f3782f aciklama` şeklinde birden fazla satır gelecektir. `pick` -> `squash` en alttan üste doğru birleştirme işlemi yapılabilir. Sonrasında metin editörü kaydedip kapatılmalıdır. Tekrar metin editörü açılacak ve commit için açıklama girilecektir. Kapatıldığında da `squash` olarak işaretlenen commitler tekillenecek ve `pick` de belirtilen commite birleştirilecektir. -i interaf (interactive) demektir. Burada config olarak `core.editor` doğru bir şekilde ayarlanmalıdır. |
+|` git rebase -i <<commit_hash>>^ `| sondaki `^` karakterine dikkat edilmelidir. `<<commit_hash>>` olarak belirtilen committen başlamak üzere yukarıya doğru bütün birleştirilebilecek commitlerin açıklamaları ile karşımıza gelir. `pick 4f3782f aciklama` şeklinde birden fazla satır gelecektir. `pick` -> `squash` en alttan üste doğru birleştirme işlemi yapılabilir. Sonrasında metin editörü kaydedip kapatılmalıdır. Tekrar metin editörü açılacak ve commit için açıklama girilecektir. Kapatıldığında da `squash` olarak işaretlenen commitler tekillenecek ve `pick` de belirtilen commite birleştirilecektir. -i interaf (interactive) demektir. Burada config olarak `core.editor` doğru bir şekilde ayarlanmalıdır. |
 |` git commit --amend `| Son yapılan commit'in açıklamasını ve içeriğini değiştirir. Son commit sonrasında bir değişiklik yapılarak önceki commit içerisine eklemek isteniyorsa staging area ya dosya aktarılarak bu komut kullanılırsa son yapılan commit içeriğine yeni değişiklik dahil olur. |
 |` git config --global merge.conflictStyle diff3 `| Fark(diff) tespit ayarını diff3 olarak ayarlanır. Bu bize bir iki farklı branch de çalışan içeriğin conflict olması durumunda en base halinide gösterecektir. |
 |` git config --global rerere.enabled true `| rerere _replay recorded resolution_ kısaltılmasıdır. _kaydedilmiş çözümü tekrar oynat_ . Bu seçenek aktif hale getirildiğinde başka bir dalda da aynı çakışma olursa git çözümü sizin için otomatik olarak uygulayacaktır.|
@@ -129,7 +133,7 @@ Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sa
 
 > **ÖNEMLİ NOT 2:** Yukarıdaki gibi bir klon oluşturulup bunun üzerinde değişiklik yapılır sornasında `git commit <<description>>` ile commit edilir. Sonrasında `git push` yapıldında aşağıdaki gibi bir hata alınacaktır. Bu hata başka bir repo açılıp oraya eklenerek sorun giderilebilir. Ancak bu hatayı almamak için `git init --bare` komutu ile uzak repo oluşturulmaktadır. Bu repo kopyalanarak bütün değişklikler aktarılır.
 
-```
+```bash
 Enumerating objects: 3, done.
 Counting objects: 100% (3/3), done.
 Delta compression using up to 8 threads
@@ -156,9 +160,11 @@ error: failed to push some refs to 'Z:/ll'
 ```
 
 ## MERGE ve DIFF TOOL
+
 [P4merge](https://www.perforce.com/downloads/visual-merge-tool)
 
 ## KAYNAKÇA
+
 [progit2](https://github.com/progit/progit2)
 
 [progit2-tr](https://github.com/progit/progit2-tr)
