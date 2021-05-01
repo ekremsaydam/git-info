@@ -24,6 +24,12 @@
 
 Git kurulumu için [Git page](https://git-scm.com/)
 
+SCI (Software Configuration Items)
+
+SCM (Software Configuration Management)
+
+VCS (Version Control System / Revision Control)
+
 Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sadece işaretçi (HEAD) bir kopyası oluşturulduğu için git branch dosyası disk kapasite kullanımı ve branch oluşturma süresi açısından düşük maliyetlidir.
 
 > `git --version`  git versiyon numarasını görüntüler.
@@ -52,54 +58,69 @@ Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sa
 |` git config --global core.excludesFile "path\.gitignore'" `|Global olarak .gitignore dosyasının gösterilmesi|
 |` git config --global diff.tool "path\p4merge" `|diff tool olarak p4merge programının belirlenmesi.|
 |` git config --global merge.tool "path\p4merge" `|merge tool olarak p4merge programının belirlenmesi.|
-|` git config --global alias.his "log --all --oneline --graph --decorate" `|alias verilerek `git his`komutu ile `git log --all --oneline --graph --decorate` komutuna atıfta bulunmak ve kısa komut ile çalıştırılaması|
-|` git config --system -e `| --system config dosyasını editör ile açar.|
+|` git config --global alias.his "log --all --oneline --graph --decorate" `|alias verilerek `git his` komutu ile `git log --all --oneline --graph --decorate` komutuna atıfta bulunmak ve kısa komut ile çalıştırılaması|
+|` git config --system -e ` <br/> ` git config --system --edit `| --system config dosyasını editör ile açar.|
 |` git config --global -e `| --global config dosyasını editör ile açar.|
 |` git config -e `| aktif dizin içerisindeki config dosyasını editör ile açar.|
-
 
 ## GIT KOMUTLARI
 
 |<div style="width:300px">Komut</div>|İşlevi|
 |-----------|-|
 |` git init `| Projenizin olduğu klasörü bir git reposu olarak işaretlemek |
+|` git status `| commit edilmemiş yeni veya güncellenen dosyaları listeler. |
 |` git add <<file_name>> `| Stageing Area ya dosyaları eklemek |
-|` git add -A . `| Stageing Area ya dosyaları toplu olarak eklemek |
-|` git rm --cached <<file_name>> `| Staging Area'dan tekrar Untracked files alanına dosyayı geri göndermek |
-|` git reset `| Staging Area'dan tekrar Untracked files alanına dosyayı geri göndermek. Commit yapılmadan değişiklik öncesi aktif branch i geri yükler. |
-|` git reset --hard <<hash>> `| istenmeyen bir commit yapıldı ise önceki commitin hash bilgisine geri dönülmek istendiğinde kullanılır. |
+|` git add . `<br/>` git add --all `<br/>` git add -A `| Stageing Area ya dosyaları toplu olarak eklemek |
+|` git rm --cached <<file_name>> `| Staging Area'dan tekrar Untracked files alanına dosyayı geri göndermek. Daha önce commit içerisinde varolan ve `.gitignore` dosyasına eklenmesine rağmen izlenen dosyalarda bu komut ile izlenme listesinden çıkarılmalıdır. Ancak ondan sonra .gitignore dosyasındaki ayar aktif olacaktır. |
+|` git restore <<filename>> `| commit yapılmadan önce değişiklikleri iptal etmek için kullanılır. file olarak belirtilen dosyadaki değişiklikleri iptal eder. Bütün değişiklikleri iptal için `.` kullanılabilir. Şart olarak Staging Area `<<filename>>` eklenmemiş olası gerekir. |
+|` git checkout <<filename>> `| Yukarıdaki restore işlemine benzer bir işlem yapar. commit yapılmadan önce değişiklikleri iptal etmek için kullanılır. file olarak belirtilen dosyadaki değişiklikleri iptal eder. Bütün değişiklikleri iptal için `.` kullanılabilir. Şart olarak Staging Area `<<filename>>` eklenmemiş olası gerekir. |
+|` git checkout -q <<filename>> `| Yukarıdaki restor işlemine benzer bir işlem yapar. commit yapılmadan önce değişiklikleri iptal etmek için kullanılır. file olarak belirtilen dosyadaki değişiklikleri iptal eder. Bütün değişiklikleri iptal için `.` kullanılabilir. Şart olarak Staging Area `<<filename>>` eklenmemiş olası gerekir. |
+|` git reset `| Staging Area'dan tekrar Untracked files alanına dosyaları geri göndermek için kullanılır. Commit yapılmadan değişiklik öncesi aktif branch'i geri yükler. |
+|` git reset <<filename>> `| `<<filename>>` olarak belirtilen dosyanın Staging Area'dan tekrar Untracked files alanına dosyayı geri göndermek için kullanılır.  |
+|` git reset --hard `| En son commit bilgilerini geri yükler. Son commit'e geri döndürmek için kullanılır. |
+|` git reset --hard <<_hash_>> `| istenmeyen bir commit yapıldı ise önceki commitin hash bilgisine geri dönülmek istendiğinde kullanılır. |
 |` git commit `| Açıklama gitmek için metin editörü çalıştırır. Bir satırdan fazla bir açılama girilecek ise bu şekilde -m parametresiz kullanılmalıdır. GIT 50/72 kuralı unutulmamalıdır. İlk satırda değişikliği özetleyen ve en fazla 50 karakter uzunluğunda bir metin olmalıdır. Ayrıntılarıda ilk satırdan sonra boş bir satır bırakarak ve her biri en fazla 72 karakter uzunluğunda istediğiniz sayıda satır olarak ekleyebilirsiniz.|
 |` git commit -m "description" `|  Versiyon ile ilgili açıklama -m seçeneği ile doğrudan komut satırından verilir. |
+|` git commit -a -m "description" `<br/>`git commit -am "description"`|  Versiyon ile ilgili açıklama -m seçeneği ile doğrudan komut satırından verilir. -a parametresi ile bütün değişiklikler Staging Area alınarak commit işlemi yapılır. |
+|` git commit -m "description" --signoff `| Lunix geliştiricileri için kullanılan ve telif hakları ile ilgili bir imzayı açıklamaya ek bir satır `Signed-off-by: <<username>> <<mail>>` olarak ekler. |
+|` git revert <<hash>> `| `<<hash>>` olarak belirtilen commit işlemini geri alır. Geri alıp yeni bir commit olarak gönderir. Bu işlemi yaparken en son committen gerie doğru işlem yapılmalıdır. restore ve reset işleminden farkı commit edilmiş bir değişikliğin geli alınması ve yeni vir commit olarak gönderilmesini saplar.  |
+|` git log `| Commit tarihçesini/geçmişini kısa açıklamaları ile listeler. liste uzun olduğunda boşluk tuşu ile sayfalamalar arasında geçiş yapılır. log sonunda `q` ile çıkılacaktır. |
 |` git log -n 2 `|  aktif branchdeki son 2 commit bilgilerini gösterir. |
-|` git log -p `| Commit tarihçesinin geniş açıklamalı olarak incelenmesi için kullanılır. |
+|` git log --oneline `| Commit tarihçesinin her commit tek satır olacak şekilde listeler. |
+|` git log --oneline --graph `| Commit tarihçesinin her commit tek satır olacak şekilde grafik olarak listeler. |
+|` git log -p `| Commit tarihçesini/geçmişini geniş açıklamalı olarak detayını göstermek için kullanılır. |
+|` git show `| Commit tarihçesini/geçmişini geniş açıklamalı olarak detayını göstermek için kullanılır. |
+|` git show <<hash>> `| `<<hash>>` bilgisi girilmiş commit'in detaylarını gösterir. |
+|` git show <<tanname>> `| `<<tanname>>` bilgisi girilmiş commit'in detaylarını gösterir. |
 |` git clone url `| Uzak repoyu locale klonlamak için kullanılır. |
-|` git show `| Bu komut son commit için meta verileri ve içerik değişikliklerini gösterir. |
 
 ## GIT BRANCH
 
 |<div style="width:300px">Komut</div>|İşlevi|
 |-----------|-|
-|` git branch `| Branch (Dal) ları listeler |
-|` git branch --list `| Branch (Dal) ları listeler |
+|`git help branch`<br/>`git branch --help`| Branch komutu için açıklamalı yardım görüntüler. |
+|` git branch `| Local (yerel) Branch (Dal) ları listeler |
+|` git branch --list `|  Local (yerel) Branch (Dal) ları listeler |
 |` git branch -v `| Son commit mesajını gösterecek şekilde branchleri listeler |
 |` git branch -a `| local ve remote bütün branchleri listeler |
+|` git branch -r `| Remote olarak aktif olan branchlerleri gösterir |
+|` git branch --delete <<branchname>> ` <br/> ` git branch -d <<branchname>> `| local ve remote bütün branchleri listeler |
 |` git remote show origin `| Remote olarak aktif olan branchler hakkında detaylı bilgi verir. |
 |` git remote update --prune origin `| Remote olarak aktif olan branchlerleri senkronize eder. |
 |` git remote update -p `| Remote olarak aktif olan branchlerleri senkronize eder. |
-|` git branch -r `| Remote olarak aktif olan branchlerleri gösterir |
-|` git help branch `| Branch komutu için açıklamalı yardım görüntüler. |
 |` git branch <<new_branch_name>> `| Yeni branch oluşturur. |
-|` git checkout <<branch_name>> `| branch_name olarak belirtilen branche geçer. |
+|` git checkout <<branchname>> `| `<<branchname>>` olarak belirtilen branche geçer. |
 |` git checkout -b <<new_branch_name>> `| yeni bir branch yaratır ve o branch aktif branch olarak seçilir. |
-|` git push -u origin <<branch_name>> `| yeni oluşturulan branch içerisinde bir değişiklik, bir dosya eklendisi olmasa dahi uzak repository ye entegre etmek için kullanılır. -u parametresi ilk defa senkronizasyon yapılacak ise kullanılmalıdır. Sonrasında -u parametresine gerek yoktur. |
-|` git stash `| Stageing Area ya alınmış ve commit edilmemiş değişiklikleri korumak için rafa kaldırır. Stack (yığın) mantığı ile çalışır. |
+|` git branch -d <<branch_name>> `| Silinmek istenen branch ismi girlerek branch silinir. Dikkat edilmesi gereken silinmek istenen branch aktif branch olmamalıdır. |
+|` git push -u origin <<branch_name>> `| yeni oluşturulan branch içerisinde bir değişiklik, bir dosya eklendisi olmasa dahi uzak repository ye entegre etmek için kullanılır. `-u` parametresi ilk defa senkronizasyon yapılacak ise kullanılmalıdır. Sonrasında `-u` parametresine gerek yoktur. |
+|` git stash `| Stageing Area ya alınmış ve commit edilmemiş değişiklikleri korumak için rafa kaldırır. Stack (yığın) mantığı ile çalışır. Son giren ilk çıkar mantığı ile çalışır.|
+|` git stash push -u -m "<<description>>" `| Stageing Area ya alınmış ve commit edilmemiş değişiklikleri korumak için rafa kaldırır. Stack (yığın) mantığı ile çalışır. Untracked files olarak belirtilen ve projeye yeni eklenmiş ama izlenmeyen dosyalarıda rafa kaldırır. Bunu `-u` parametresi ile uygular. `-m` stash e bir açıklama eklemek için kullanılır. `push` komutu yazılmasada olur. |
 |` git stash list `| Geçici olarak kayıt altına alınan değişiklikleri listeler. |
-|` git stash pop `| En son değişikliğin stash'den silinerek aktif branch'e (dala) geri yükler. |
+|` git stash pop `| En son değişikliğin stash'den silinerek aktif branch'e (dala) geri yükler ve stash listesinden siler. |
 |` git stash apply stash@{0} `| Belirtilen stash@{0} i Stash'den silmeden aktif branch'e geri yükler |
 |` git stash drop stash@{0} `| Belirtilen stash@{0} i aktif branch'e yüklemeden silinmesini sağlar. |
 |` git checkout <<hash>> `| Belirtilen hash e ait commite gitmek için kullanılır. HEAD yerine detached HEAD kavramı bulunmaktadır. git in yönettiği pointer. |
-|` git checkout master `<br/>` git merge <<mergebranchname>> `| önce birleştirilmek istenen branche geçilir. sonra birleştirilecek branch ismi belirtilerek merge işlemi yapılır. |
-|` git branch -d <<branch_name>> `| Silinmek istenen branch ismi girlerek branch silinir. Dikkat edilmesi gereken silinmek istenen branch aktif branch olmamalıdır. |
+|` git merge <<branchname>> `| Bulunulan branch'e `<<branchname>>`olarak bbelirtilen brench birleştirilir. |
 |` git push origin --delete <<branch_name>> `| Remote branchi silmek. |
 |` git init --bare <<repo_name>> `| Yerel github-gitlab gibi dosya paylaşımında uzak bir merkezi depo oluşturmak. |
 |` git pull `| Geçerli branch uzak bir branch'i izleyecek şekilde ayarlandıysa bu komutu kullanarak uzak branch'deki değişiklikleri yerel branch ile birleştirmek için kullanabilirsiniz. |
@@ -109,7 +130,12 @@ Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sa
 |` git remote `| Remote repository'leri (uzak depoları) kısa listesini gösterir. |
 |` git remote -v `| Remote repository'leri (uzak depoları) URL bilgisi ile gösterir. |
 |` git fetch `| Local Repository veritabanı Remote Repository veritabanı ile senkronize edilir. |
-|` git tag "v.1.0.1" `| Etiket ekleme |
+|` git tag `| Etiketleri listeler |
+|` git tag --list -n `| Etiketleri açıklamaları ile birlite tek satır olarak listeler |
+|` git tag --list --format '%(*objectname:short) %(refname:short)' `| Etiketleri belirtilen formatta listeler |
+|` git tag v1.0.0" `| Aktif olan commite'e etiket ekleme için kullanılır. |
+|` git tag -a v1.0.1 -m "<<descriptionversion>>" `| Aktif olan commite'e etiket ve açıklama (`<<descriptionversion>>`) ekleme için kullanılır. |
+|` git tag -a v1.0.1 -m "<<descriptionversion>>" <<hash>> `| `<<hash>>` olan belirtilen commite'e etiket ve açıklama (`<<descriptionversion>>`) ekleme için kullanılır. |
 |` git rebase -i <<commit_hash>>^ `| sondaki `^` karakterine dikkat edilmelidir. `<<commit_hash>>` olarak belirtilen committen başlamak üzere yukarıya doğru bütün birleştirilebilecek commitlerin açıklamaları ile karşımıza gelir. `pick 4f3782f aciklama` şeklinde birden fazla satır gelecektir. `pick` -> `squash` en alttan üste doğru birleştirme işlemi yapılabilir. Sonrasında metin editörü kaydedip kapatılmalıdır. Tekrar metin editörü açılacak ve commit için açıklama girilecektir. Kapatıldığında da `squash` olarak işaretlenen commitler tekillenecek ve `pick` de belirtilen commite birleştirilecektir. -i interaf (interactive) demektir. Burada config olarak `core.editor` doğru bir şekilde ayarlanmalıdır. |
 |` git commit --amend `| Son yapılan commit'in açıklamasını ve içeriğini değiştirir. Son commit sonrasında bir değişiklik yapılarak önceki commit içerisine eklemek isteniyorsa staging area ya dosya aktarılarak bu komut kullanılırsa son yapılan commit içeriğine yeni değişiklik dahil olur. |
 |` git config --global merge.conflictStyle diff3 `| Fark(diff) tespit ayarını diff3 olarak ayarlanır. Bu bize bir iki farklı branch de çalışan içeriğin conflict olması durumunda en base halinide gösterecektir. |
@@ -126,8 +152,12 @@ Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sa
 |-----------|-|
 |` pwd `| bulunulan klasörün path bilgisini gösterir. |
 |` touch <<new_file>> `| <<new_file>> olarak belirtilen boş bir dosya yaratır |
+|` echo "<<addinfile>>" >> <<new_file>> `| <<new_file>> olarak belirtilen  bir dosya yaratır. İçerisine  <<addinfile>> yazısını ekler.|
 |` git config --global credential.helper wincred `| alabileceği değerler osxkeychain - wincred. Widnows işletim sisteminde `Control Panel > User Accounts > Manage your credentials > Windows Credentials` |
 |` git config --global credential.helper "cache --timeout 3600" `| Default olarak 15 dakika burada belirtildiği gibi 3600 saniye boyunca credential sormayacaktır. |
+|` git log --author="<<authorname>>" --oneline `| <<authorname>> olarak belirtilen kişiye ait comitleri listeler. |
+|` git log --author="<<authorname>>" --oneline `| <<authorname>> olarak belirtilen kişiye ait comitleri listeler. |
+|` git log --author="<<authorname>>" --oneline -- index.html `| index.html üzerinde <authorname> olarak belirtilen kişinin hangi commitlerde değişiklik yaprığının listesini getirir. |
 
 > **ÖNEMLİ NOT 1:** Eğer yerel bulunan klasörü `git init` komutu ile değişiklikleri izlemek için işaretlendi ise bu klasör altında *.git* uzaktılı bir gizli klasör oluşacaktır. Bu git'in kendi mantığı ile değişiklikleri tutuğu db'sidir. Bu klasör başka bir klasöre ve uzak sunucuya kopyalanarak `git clone <<path>>` ile gösterildiğinde bütün commit yapılan değişiklikler ve bütün dosyalar aynı şekilde geri getirilebilir. 
 
@@ -163,13 +193,15 @@ error: failed to push some refs to 'Z:/ll'
 
 [P4merge](https://www.perforce.com/downloads/visual-merge-tool)
 
+[winmerge](https://winmerge.org/)
+
 ## KAYNAKÇA
+
+[Git Documentation Book](https://git-scm.com/book/en/v2)
 
 [progit2](https://github.com/progit/progit2)
 
 [progit2-tr](https://github.com/progit/progit2-tr)
-
-[Git Documentation Book](https://git-scm.com/book/en/v2)
 
 [git-tfs](https://github.com/git-tfs/git-tfs) migration tool
 
