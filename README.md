@@ -26,7 +26,7 @@ Bu bilgilere göre merge işleminin ne çeşit bir yapı içerisinde gerçekleş
 
 Birleştirilmek istenen hedef branch üzerinde herhangi bir değişiklik yapılmamıştır. Hedef dalın son commit bilgisi ile kaynak dalın yani birleştirilmek istenen commit'in ilk commit bilgisi aynıdır. Bu ortak commit bilgisi dışında kalan commit bilgilerini kaynak branch üzerinden hedef branch üzerine peşisıra ekler. Bu merge türüne Fast Forward Merge denilir.
 
-![before ff](/assets/ffmerge.jpg)
+![before ff](/assets/ffmergev2.jpg)
 
 ### **2. No Fast Forward Merge**
 
@@ -34,7 +34,7 @@ Birleştirilmek istenen hedef branch üzerinde herhangi bir değişiklik yapılm
 
 ### **3. 3 Way Merge (Automatic Merge)**
 
-![Before Merging](/assets/3waymerge.jpg)
+![Before Merging](/assets/3waymergev2.jpg)
 [Kaynak](https://www.atlassian.com/git/tutorials/using-branches/git-merge)
 
 ## REBASE KAVRAMI
