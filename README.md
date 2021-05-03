@@ -4,7 +4,7 @@
 
 İki farklı yaklaşım vardır.
 
-![Centralized Version Control](/assets/centralizedversioncontrol.jpg) ![Distributed Version Control](/assets/distributedversioncontrol.jpg)
+![Centralized Version Control](/assets/centralizedversioncontrolv2.jpg) ![Distributed Version Control](/assets/distributedversioncontrolv2.jpg)
 
 [KAYNAK](https://homes.cs.washington.edu/~mernst/advice/version-control.html)
 
@@ -39,7 +39,7 @@ Birleştirilmek istenen hedef branch üzerinde herhangi bir değişiklik yapılm
 
 ## REBASE KAVRAMI
 
-![Rebase](/assets/rebase.jpg)
+![Rebase](/assets/rebasev2.jpg)
 
 `git rebase <targetbranch>`komutu ile uygulanır.
 
