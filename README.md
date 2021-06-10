@@ -79,7 +79,7 @@ Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sa
 |`git config --global --unset user.name`| user.name key bilgisini siler.|
 |`git config --global init.defaultBranch master`|Default branch ismi|
 |`git config --global core.editor "'path\sublime_text.exe'"`|Editör seçimi|
-|`git config --global mergetool.keepBackup false`|git diff aracı çalıştırıldığında bağzı dosyalar oluşturulur. çakışmalar çözülüp merge işlemi bitirilse bile bu dosyalar silinmez. Bu durumu değiştirmek için bu config ayarı kullanılır. git difftool komutu ile çalıştırıalcak 3rd uygulamaların geçici dosyalar bu kapsamda değildir. |
+|`git config --global mergetool.keepBackup false`|git diff aracı çalıştırıldığında bazı dosyalar oluşturulur. çakışmalar çözülüp merge işlemi bitirilse bile bu dosyalar silinmez. Bu durumu değiştirmek için bu config ayarı kullanılır. git difftool komutu ile çalıştırıalcak 3rd uygulamaların geçici dosyalar bu kapsamda değildir. |
 |`git config --global core.excludesFile "path\.gitignore'"`|Global olarak .gitignore dosyasının gösterilmesi|
 |`git config --global diff.tool "path\p4merge"`|difftool olarak p4merge programının belirlenmesi.|
 |`git config --global merge.tool "path\p4merge"`|merge tool olarak p4merge programının belirlenmesi.|
