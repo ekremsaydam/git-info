@@ -59,6 +59,8 @@ Git branch oluşturmada proje dosyalarının birer kopyalarını oluşturmayp sa
 
 >`git --version` git versiyon numarasını görüntüler.
 
+>`git config --list --show-origin --show-scope`hangi konfigurasyon için hangi config dosyanın kullanıldığının path bilgisi ile gösterilmesi için kullanılır.
+
 >`C:\Program Files<(x86)>\Git\etc\gitconfig`==>`git config --system`komutu ile kullanılan config dosyasının yoludur. git'in install edildiği klasördür. 32 bit install edildi ise`Program Files(x86)`klasörü içerisindedir.
 
 >`C:\Users\<userame>\.gitconfig`==>`git config --global`komutu ile kullanılan config dosyasının yoludur.
